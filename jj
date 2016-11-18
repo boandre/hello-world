@@ -2,7 +2,97 @@ import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+public class ExempleAvecFils extends JFrame 
+                       implements ActionListener, Runnable {
+	
+  // Constructeur
+  ExempleAvecFils() {
+    // Crée un cadre contenant un bouton et un champ textuel.
+    GridLayout disposition = new GridLayout(2,1); 
+    this.getContentPane().setLayout(disposition);
+    JButton monBouton = new JButton("Tuer le temps");
+    monBouton.addActionListener(this);
+    this.getContentPane().add(monBouton);    
+    this.getContentPane().add(new JTextField());
+  }
+
+  public void actionPerformed(ActionEvent événement) {
+    // Crée un fil et exécute le code "tuer le temps"
+    // sans bloquer la fenêtre.
+    Thread travailleur = new Thread(this);
+    travailleur.start();  // Ceci appelle la méthode run()
+  }
+
+  public void run() {
+    // Tue juste un peu le temps pour montrer que
+    // les contrôles de la fenêtre NE sont PAS verrouillés.
+    for (int i = 0; i < 30000; i++) {
+      this.setTitle("i = " + i);	
+    }
+  }
+    
+  public static void main(String[] args) {
+    ExempleAvecFils maFenêtre = new ExempleAvecFils();
+    // Permet la fermeture de la fenêtre par clic sur la 
+    // petite croix dans le coin.
+    maFenêtre.setDefaultCloseOperation(
+                             WindowConstants.EXIT_ON_CLOSE);
+		
+    // Affecte sa taille au cadre et le rend visible.
+    maFenêtre.setBounds(0, 0, 200, 100);
+    maFenêtre.setVisible(true);
+  }
+}import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ExempleAvecFils extends JFrame 
+                       implements ActionListener, Runnable {
+	
+  // Constructeur
+  ExempleAvecFils() {
+    // Crée un cadre contenant un bouton et un champ textuel.
+    GridLayout disposition = new GridLayout(2,1); 
+    this.getContentPane().setLayout(disposition);
+    JButton monBouton = new JButton("Tuer le temps");
+    monBouton.addActionListener(this);
+    this.getContentPane().add(monBouton);    
+    this.getContentPane().add(new JTextField());
+  }
+
+  public void actionPerformed(ActionEvent événement) {
+    // Crée un fil et exécute le code "tuer le temps"
+    // sans bloquer la fenêtre.
+    Thread travailleur = new Thread(this);
+    travailleur.start();  // Ceci appelle la méthode run()
+  }
+
+  public void run() {
+    // Tue juste un peu le temps pour montrer que
+    // les contrôles de la fenêtre NE sont PAS verrouillés.
+    for (int i = 0; i < 30000; i++) {
+      this.setTitle("i = " + i);	
+    }
+  }
+    
+  public static void main(String[] args) {
+    ExempleAvecFils maFenêtre = new ExempleAvecFils();
+    // Permet la fermeture de la fenêtre par clic sur la 
+    // petite croix dans le coin.
+    maFenêtre.setDefaultCloseOperation(
+                             WindowConstants.EXIT_ON_CLOSE);
+		
+    // Affecte sa taille au cadre et le rend visible.
+    maFenêtre.setBounds(0, 0, 200, 100);
+    maFenêtre.setVisible(true);
+  }
+}
 public class ExempleSansFils extends JFrame
                             implements ActionListener {
   // Constructeur
